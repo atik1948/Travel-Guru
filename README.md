@@ -2,6 +2,22 @@
 
 Travel Guru is a portfolio-ready travel booking web app built with React, Vite, Tailwind CSS, React Router, and Firebase. It started as a travel-themed UI and evolved into a fuller product-style demo with authentication, protected routes, booking history, search filtering, stay details, content pages, and an admin dashboard.
 
+## Live Links
+
+- Live Demo: https://travel-bda68.web.app
+- GitHub Repository: https://github.com/atik1948/Travel-Guru
+
+## Why This Project
+
+This project showcases a modern frontend workflow with a product-style user journey:
+
+- browse destinations
+- create a trip booking
+- search matching stays
+- save bookings to an authenticated account
+- manage bookings from a user dashboard
+- moderate booking activity and contact messages from an admin dashboard
+
 ## Project Highlights
 
 - Destination discovery flow across multiple Bangladesh travel moods
@@ -120,6 +136,12 @@ npm run build
 npm run lint
 ```
 
+5. Run tests
+
+```bash
+npm test
+```
+
 ## Firebase Setup
 
 1. Copy `.env.example` to `.env`
@@ -151,6 +173,27 @@ Important:
 - without a Firebase `admin: true` custom claim, admin dashboard access stays locked
 - if a user signs in with multiple providers linked to the same Firebase account, the same admin claim will apply to that identity
 
+## Deployment
+
+### GitHub
+
+```bash
+git add .
+git commit -m "your update message"
+git push
+```
+
+### Firebase Hosting
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+Current live deployment:
+
+- https://travel-bda68.web.app
+
 ## Project Structure
 
 - `src/pages` route-level screens
@@ -174,9 +217,8 @@ This project is portfolio-ready and demonstrates:
 - search/filter UI
 - reusable service and data layers
 
-## Recommended Final Portfolio Steps
+## Next Improvements
 
-- add a live deployment link
 - add a short demo video or GIF
 - add automated tests for routes and service logic
 - continue final responsive/header polish
