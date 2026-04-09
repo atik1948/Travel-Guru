@@ -1,0 +1,82 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function isBookingOwner() {
+      return signedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    function isBookingOwnerOnCreate() {
+      return signedIn() && request.resource.data.userId == request.auth.uid;
+    }
+
+    function hasValidBookingStatus(status) {
+      return status in ['pending', 'confirmed', 'cancel-requested', 'cancelled'];
+    }
+
+    match /bookings/{bookingId} {
+      allow create: if isBookingOwnerOnCreate()
+        && request.resource.data.userEmail is string
+        && request.resource.data.destinationSlug is string
+        && request.resource.data.destinationName is string
+        && request.resource.data.origin is string
+        && request.resource.data.heroTitle is string
+        && request.resource.data.summary is string
+        && request.resource.data.stayId is string
+        && request.resource.data.stayTitle is string
+        && request.resource.data.stayPrice is string
+        && request.resource.data.guests is int
+        && request.resource.data.fromDate is string
+        && request.resource.data.toDate is string
+        && hasValidBookingStatus(request.resource.data.status);
+
+      allow read: if isBookingOwner() || isAdmin();
+
+      allow update: if (
+          isBookingOwner()
+          && request.resource.data.userId == resource.data.userId
+          && request.resource.data.userEmail == resource.data.userEmail
+          && request.resource.data.destinationSlug == resource.data.destinationSlug
+          && request.resource.data.destinationName == resource.data.destinationName
+          && request.resource.data.origin == resource.data.origin
+          && request.resource.data.heroTitle == resource.data.heroTitle
+          && request.resource.data.summary == resource.data.summary
+          && request.resource.data.stayId == resource.data.stayId
+          && request.resource.data.stayTitle == resource.data.stayTitle
+          && request.resource.data.stayPrice == resource.data.stayPrice
+          && request.resource.data.guests == resource.data.guests
+          && request.resource.data.fromDate == resource.data.fromDate
+          && request.resource.data.toDate == resource.data.toDate
+          && resource.data.status in ['pending', 'confirmed']
+          && request.resource.data.status == 'cancel-requested'
+        ) || (
+          isAdmin()
+          && hasValidBookingStatus(request.resource.data.status)
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    match /contactMessages/{messageId} {
+      allow create: if request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.message is string
+        && (
+          !signedIn()
+          || request.resource.data.userId == request.auth.uid
+        );
+
+      allow read: if isAdmin();
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+  }
+}
