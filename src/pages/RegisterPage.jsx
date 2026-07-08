@@ -83,7 +83,7 @@ function RegisterPage() {
       .then(() => {
         setSuccessMessage('Account created successfully. Redirecting to your account...')
         success('Account created', 'Redirecting to your account.')
-        navigate('/my-bookings', { replace: true })
+        navigate('/profile', { replace: true })
       })
       .catch((error) => {
         const message = getFirebaseErrorMessage(error, 'Unable to create the account right now.')
@@ -108,7 +108,7 @@ function RegisterPage() {
       .then(() => {
         setSuccessMessage('Google sign-up successful. Redirecting to your account...')
         success('Google sign-up successful', 'Redirecting to your account.')
-        navigate('/my-bookings', { replace: true })
+        navigate('/profile', { replace: true })
       })
       .catch((error) => {
         const message = getFirebaseErrorMessage(error, 'Unable to continue with Google right now.')

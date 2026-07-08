@@ -70,7 +70,7 @@ function BookingConfirmationPage() {
             <div className="rounded-[20px] border border-black/6 bg-[#f8f7f2] p-5">
               <p className="text-muted text-xs font-semibold uppercase tracking-[0.24em]">Account Status</p>
               <p className="mt-3 text-lg font-semibold text-ink">
-                {isAuthenticated ? 'Saved to My Bookings' : 'Guest flow only'}
+                {isAuthenticated ? 'Saved to Profile' : 'Guest flow only'}
               </p>
             </div>
             {stayTitle ? (
@@ -91,10 +91,10 @@ function BookingConfirmationPage() {
               View matching stays
             </Link>
             <Link
-              to={isAuthenticated ? '/my-bookings' : '/login'}
+              to={isAuthenticated ? '/profile' : '/login'}
               className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-ink transition hover:bg-black/[0.04]"
             >
-              {isAuthenticated ? 'Open My Bookings' : 'Sign in to save more'}
+              {isAuthenticated ? 'Open Profile' : 'Sign in to save more'}
             </Link>
           </div>
         </div>

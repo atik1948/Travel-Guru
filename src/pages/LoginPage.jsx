@@ -25,7 +25,7 @@ function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [resetLoading, setResetLoading] = useState(false)
-  const nextPath = location.state?.from?.pathname || '/my-bookings'
+  const nextPath = location.state?.from?.pathname || '/profile'
 
   useEffect(() => {
     if (!authLoading && isAuthenticated) {

@@ -66,7 +66,7 @@ describe('AdminRoute', () => {
     mockUseAuth.mockReset()
   })
 
-  it('redirects non-admin signed-in users to the home page', () => {
+  it('shows an access denied message for non-admin signed-in users', () => {
     mockUseAuth.mockReturnValue({
       authLoading: false,
       isAuthenticated: true,
@@ -75,7 +75,9 @@ describe('AdminRoute', () => {
 
     renderWithRoutes(<AdminRoute />)
 
-    expect(screen.getByText('Home Page')).toBeInTheDocument()
+    expect(screen.getByText('Admin access required')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Go Home' })).toHaveAttribute('href', '/')
+    expect(screen.getByRole('link', { name: 'Open Profile' })).toHaveAttribute('href', '/profile')
   })
 
   it('renders the protected content for admin users', () => {

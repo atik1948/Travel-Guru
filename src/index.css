@@ -49,11 +49,9 @@ input {
 }
 
 .travel-shell {
-  width: min(1240px, calc(100% - 32px));
-  margin: 14px auto;
-  min-height: calc(100vh - 28px);
+  width: 100%;
+  min-height: 100vh;
   background: #ffffff;
-  border: 1px solid #d8d8d8;
 }
 
 .hero-overlay {

@@ -251,7 +251,7 @@ function AdminDashboardPage() {
     }
 
     const confirmed = window.confirm(
-      `Delete the booking for ${destinationName}? This will remove it from Firestore and My Bookings too.`,
+      `Delete the booking for ${destinationName}? This will remove it from Firestore and the traveler profile too.`,
     )
 
     if (!confirmed) {
@@ -300,7 +300,7 @@ function AdminDashboardPage() {
   }
 
   return (
-    <main className="mx-auto max-w-[1180px] px-6 pb-14 pt-28 md:px-8 md:pt-32">
+    <main className="mx-auto max-w-[1180px] px-6 py-10 md:px-8 md:py-12">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="inline-flex rounded-full bg-brand/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#7a5400]">

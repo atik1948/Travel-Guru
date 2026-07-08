@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import MainLayout from './components/MainLayout'
 import PrivateRoute, { AdminRoute } from './routes/PrivateRoute'
 
@@ -12,7 +12,6 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const DestinationPage = lazy(() => import('./pages/DestinationPage'))
 const HomePage = lazy(() => import('./pages/HomePage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
-const MyBookingsPage = lazy(() => import('./pages/MyBookingsPage'))
 const NewsPage = lazy(() => import('./pages/NewsPage'))
 const NewsPostPage = lazy(() => import('./pages/NewsPostPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
@@ -48,12 +47,12 @@ function App() {
           <Route path="search" element={<SearchPage />} />
           <Route path="stays/:stayId" element={<StayDetailsPage />} />
           <Route element={<PrivateRoute />}>
-            <Route path="my-bookings" element={<MyBookingsPage />} />
+            <Route path="my-bookings" element={<Navigate to="/profile" replace />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
-          <Route element={<AdminRoute />}>
-            <Route path="admin" element={<AdminDashboardPage />} />
-          </Route>
+        </Route>
+        <Route element={<AdminRoute />}>
+          <Route path="admin" element={<AdminDashboardPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

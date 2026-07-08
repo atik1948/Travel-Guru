@@ -91,7 +91,7 @@ function SearchBar({ dark, className = '', onSubmit }) {
 function MainLayout() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { hasFirebaseConfig, hasAdminClaim, isAuthenticated, logout, user } = useAuth()
+  const { hasFirebaseConfig, isAuthenticated, logout, user } = useAuth()
   const { success, error: showError } = useToast()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register'
@@ -143,19 +143,19 @@ function MainLayout() {
       <div
         className={
           isSearchPage
-            ? 'mx-auto max-w-[1180px] px-[40px] py-[22px]'
+            ? 'w-full px-[40px] py-[22px]'
             : darkNav
               ? 'relative px-0 py-0'
-              : 'px-6 py-6 md:px-8 md:py-6'
+              : 'py-6'
         }
       >
         <header
           className={`flex flex-wrap items-center md:flex-nowrap md:justify-between ${
             darkNav
               ? isAuthenticated
-                ? 'absolute inset-x-0 top-0 z-20 gap-4 px-6 py-5 text-white md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:grid-rows-[auto_auto] md:items-center md:gap-x-6 md:gap-y-4 md:px-8 md:py-8'
+                ? 'absolute inset-x-0 top-0 z-20 gap-4 px-6 py-5 text-white md:grid md:grid-cols-[minmax(360px,1fr)_auto_minmax(220px,1fr)] md:items-center md:gap-x-6 md:px-8 md:py-8'
                 : 'absolute inset-x-0 top-0 z-20 gap-4 px-6 py-5 text-white md:grid md:grid-cols-[auto_320px_minmax(0,1fr)_auto] md:items-center md:gap-5 md:px-8 md:py-8'
-              : `border-b border-black/10 ${isSearchPage ? 'gap-4 pb-[14px]' : 'gap-4 pb-5'} md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-x-10`
+              : `border-b border-black/10 px-6 md:px-8 ${isSearchPage ? 'gap-4 pb-[14px]' : 'gap-4 pb-5'} md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-x-10`
           }`}
         >
           <div
@@ -198,7 +198,7 @@ function MainLayout() {
           </div>
 
           {darkNav && isAuthenticated && (
-            <div className="hidden max-w-[460px] items-center gap-4 lg:col-start-1 lg:row-start-2 lg:flex lg:justify-self-start">
+            <div className="hidden max-w-[460px] items-center gap-4 lg:col-start-1 lg:flex lg:justify-self-start">
               <TravelLogo dark />
               <SearchBar dark onSubmit={handleDestinationSearch} />
             </div>
@@ -252,16 +252,6 @@ function MainLayout() {
               {isAuthenticated && (
                 <HeaderNavLink darkNav={darkNav} to="/profile" onClick={() => setMobileMenuOpen(false)}>
                   Profile
-                </HeaderNavLink>
-              )}
-              {isAuthenticated && (
-                <HeaderNavLink darkNav={darkNav} to="/my-bookings" onClick={() => setMobileMenuOpen(false)}>
-                  My Bookings
-                </HeaderNavLink>
-              )}
-              {hasAdminClaim && (
-                <HeaderNavLink darkNav={darkNav} to="/admin" onClick={() => setMobileMenuOpen(false)}>
-                  Admin
                 </HeaderNavLink>
               )}
             </div>
@@ -349,8 +339,8 @@ function MainLayout() {
           {!isSearchPage &&
             darkNav &&
             (isAuthenticated ? (
-              <div className="hidden max-w-[220px] items-center gap-3 lg:col-start-3 lg:row-start-2 lg:flex lg:justify-self-end">
-                <span className="max-w-[96px] truncate text-sm text-white/88">{userLabel}</span>
+              <div className="hidden min-w-0 max-w-[260px] items-center gap-3 lg:col-start-3 lg:flex lg:justify-self-end">
+                <span className="min-w-0 max-w-[130px] truncate text-sm text-white/88">{userLabel}</span>
                 <button
                   type="button"
                   onClick={handleLogout}

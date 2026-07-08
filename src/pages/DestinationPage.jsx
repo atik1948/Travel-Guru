@@ -47,8 +47,8 @@ function DestinationPage() {
   return (
     <section className="py-8 md:py-10">
       <div className="rounded-[32px] bg-[linear-gradient(135deg,#f5efe0_0%,#fbfaf6_34%,#dbe5df_100%)] p-6 md:p-8">
-        <div className="max-w-[1120px] rounded-[26px] bg-white/92 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.1)] md:px-8 md:py-6">
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="w-full rounded-[26px] bg-white/92 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.1)] md:px-8 md:py-6">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-muted text-sm font-medium uppercase tracking-[0.28em]">Explore Bangladesh</p>
               <h1 className="mt-2 max-w-[620px] text-[42px] font-semibold leading-[1.03] text-ink md:text-[46px]">
@@ -56,7 +56,7 @@ function DestinationPage() {
               </h1>
             </div>
 
-            <p className="max-w-[430px] text-[14px] leading-[1.9] text-[#666666] lg:justify-self-start lg:self-center">
+            <p className="max-w-[430px] text-[14px] leading-[1.9] text-[#666666] lg:justify-self-end lg:self-center">
               Coastal calm, misty tea gardens or bold river adventures. Each route below keeps the same Travel
               Guru feel while offering a different kind of trip.
             </p>
